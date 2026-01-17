@@ -1,5 +1,4 @@
-# TIPL
-Tokenized IP License reference and tools
+#Tokenized IP License reference and tools (TIPL)
 
 A Tokenized IP License delivers IP value without relying on any company or foundation. An acquirer can buy the IP by buying the tokens. A TIPL can govern any type of software or IP, not just crypto-related software.
 
