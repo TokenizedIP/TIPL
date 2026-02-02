@@ -4,6 +4,7 @@ import { BaseSigner, TransactionRequest, SignedTransaction } from './types';
 export class LocalSigner implements BaseSigner {
   private wallet: ethers.Wallet;
   private provider: ethers.JsonRpcProvider;
+  private nextNonce: number | null = null;
 
   constructor(privateKey: string, rpcUrl: string) {
     this.provider = new ethers.JsonRpcProvider(rpcUrl);
@@ -15,6 +16,7 @@ export class LocalSigner implements BaseSigner {
   }
 
   async signTransaction(tx: TransactionRequest): Promise<SignedTransaction> {
+    const nonce = tx.nonce ?? this.nextNonce ?? undefined;
     const populatedTx = await this.wallet.populateTransaction({
       to: tx.to,
       value: tx.value,
@@ -22,9 +24,10 @@ export class LocalSigner implements BaseSigner {
       gasLimit: tx.gasLimit,
       maxFeePerGas: tx.maxFeePerGas,
       maxPriorityFeePerGas: tx.maxPriorityFeePerGas,
-      nonce: tx.nonce,
+      nonce,
       chainId: tx.chainId,
     });
+    this.nextNonce = (populatedTx.nonce as number) + 1;
 
     const rawTransaction = await this.wallet.signTransaction(populatedTx);
     const hash = ethers.keccak256(rawTransaction);
@@ -33,16 +36,19 @@ export class LocalSigner implements BaseSigner {
   }
 
   async sendTransaction(tx: TransactionRequest): Promise<ethers.TransactionResponse> {
-    return this.wallet.sendTransaction({
+    const nonce = tx.nonce ?? this.nextNonce ?? undefined;
+    const response = await this.wallet.sendTransaction({
       to: tx.to,
       value: tx.value,
       data: tx.data,
       gasLimit: tx.gasLimit,
       maxFeePerGas: tx.maxFeePerGas,
       maxPriorityFeePerGas: tx.maxPriorityFeePerGas,
-      nonce: tx.nonce,
+      nonce,
       chainId: tx.chainId,
     });
+    this.nextNonce = (response.nonce) + 1;
+    return response;
   }
 
   getProvider(): ethers.JsonRpcProvider {

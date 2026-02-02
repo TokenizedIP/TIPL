@@ -12,6 +12,7 @@ export class LedgerSigner implements BaseSigner {
   private eth: Eth | null = null;
   private transport: Transport | null = null;
   private cachedAddress: string | null = null;
+  private nextNonce: number | null = null;
 
   constructor(rpcUrl: string, derivationPath: string = DEFAULT_PATH) {
     this.provider = new ethers.JsonRpcProvider(rpcUrl);
@@ -49,7 +50,8 @@ export class LedgerSigner implements BaseSigner {
 
     // Get chain ID and nonce if not provided
     const chainId = tx.chainId ?? Number((await this.provider.getNetwork()).chainId);
-    const nonce = tx.nonce ?? await this.provider.getTransactionCount(address);
+    const nonce = tx.nonce ?? this.nextNonce ?? await this.provider.getTransactionCount(address);
+    this.nextNonce = nonce + 1;
 
     // Estimate gas if not provided
     let gasLimit = tx.gasLimit;

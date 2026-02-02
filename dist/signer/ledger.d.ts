@@ -6,6 +6,7 @@ export declare class LedgerSigner implements BaseSigner {
     private eth;
     private transport;
     private cachedAddress;
+    private nextNonce;
     constructor(rpcUrl: string, derivationPath?: string);
     private connect;
     disconnect(): Promise<void>;

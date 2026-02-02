@@ -308,6 +308,16 @@ async function main() {
       [tickLower, tickUpper] = [tickUpper, tickLower];
     }
 
+    // Ensure single-sided liquidity: tickLower must be >= currentTick for token0-only,
+    // or tickUpper must be <= currentTick for token1-only, to avoid needing both tokens.
+    if (isTokenCurrency0 && tickLower <= currentTick) {
+      tickLower = nearestUsableTick(currentTick + TICK_SPACING, TICK_SPACING);
+      console.log(`Adjusted tickLower to ${tickLower} to ensure single-sided token deposit`);
+    } else if (!isTokenCurrency0 && tickUpper >= currentTick) {
+      tickUpper = nearestUsableTick(currentTick - TICK_SPACING, TICK_SPACING);
+      console.log(`Adjusted tickUpper to ${tickUpper} to ensure single-sided token deposit`);
+    }
+
     console.log(`\nPrice range: ${PRICE_LOWER} to ${PRICE_UPPER} USDC per token`);
 
     console.log(`\nTick range: ${tickLower} to ${tickUpper}`);

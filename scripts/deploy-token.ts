@@ -109,17 +109,29 @@ async function main() {
     console.log('Waiting for confirmation...');
 
     const receipt = await txResponse.wait();
-    const tokenAddress = receipt?.contractAddress;
+
+    if (!receipt || receipt.status !== 1) {
+      throw new Error('Deploy transaction reverted');
+    }
+
+    const tokenAddress = receipt.contractAddress;
 
     if (!tokenAddress) {
       throw new Error('Failed to get contract address from receipt');
     }
 
     console.log(`Token deployed at: ${tokenAddress}`);
-    console.log(`Block: ${receipt?.blockNumber}`);
+    console.log(`Block: ${receipt.blockNumber}`);
 
     // Create token contract instance for transfers
     const token = new ethers.Contract(tokenAddress, ERC20_ABI, provider);
+
+    // Verify contract is accessible before sending transfers
+    const deployerBalance = await token.balanceOf(deployerAddress);
+    if (deployerBalance !== TOTAL_SUPPLY) {
+      throw new Error(`Contract not ready: expected ${TOTAL_SUPPLY}, got ${deployerBalance}`);
+    }
+    console.log('Contract verified on-chain.');
 
     // Distribution amounts (18 decimals)
     const tiplAmount = ethers.parseUnits('50000', 18); // 50K to TIPL
@@ -141,7 +153,10 @@ async function main() {
       data: tiplTransferData,
       chainId: BASE_CHAIN_ID,
     });
-    await tiplTx.wait();
+    const tiplReceipt = await tiplTx.wait();
+    if (!tiplReceipt || tiplReceipt.status !== 1) {
+      throw new Error('TIPL treasury transfer reverted');
+    }
     console.log(`TIPL transfer confirmed: ${tiplTx.hash}`);
 
     // Transfer to Project Treasury
@@ -152,7 +167,10 @@ async function main() {
       data: projectTransferData,
       chainId: BASE_CHAIN_ID,
     });
-    await projectTx.wait();
+    const projectReceipt = await projectTx.wait();
+    if (!projectReceipt || projectReceipt.status !== 1) {
+      throw new Error('Project treasury transfer reverted');
+    }
     console.log(`Project transfer confirmed: ${projectTx.hash}`);
 
     // If pool flag is set, tokens remain with deployer for pool creation

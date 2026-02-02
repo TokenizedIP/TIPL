@@ -14,6 +14,7 @@ class LedgerSigner {
     eth = null;
     transport = null;
     cachedAddress = null;
+    nextNonce = null;
     constructor(rpcUrl, derivationPath = DEFAULT_PATH) {
         this.provider = new ethers_1.ethers.JsonRpcProvider(rpcUrl);
         this.derivationPath = derivationPath;
@@ -45,7 +46,8 @@ class LedgerSigner {
         const address = await this.getAddress();
         // Get chain ID and nonce if not provided
         const chainId = tx.chainId ?? Number((await this.provider.getNetwork()).chainId);
-        const nonce = tx.nonce ?? await this.provider.getTransactionCount(address);
+        const nonce = tx.nonce ?? this.nextNonce ?? await this.provider.getTransactionCount(address);
+        this.nextNonce = nonce + 1;
         // Estimate gas if not provided
         let gasLimit = tx.gasLimit;
         if (!gasLimit) {
