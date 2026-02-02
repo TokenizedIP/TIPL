@@ -15,6 +15,9 @@
 .DS_Store
 Thumbs.db
 
+#npm users
+node_modules
+
 # Logs
 logs
 *.log
