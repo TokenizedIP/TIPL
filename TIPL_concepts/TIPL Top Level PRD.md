@@ -69,9 +69,30 @@ The setup will go through the following steps:
 
 The Project Treasury is a blockchain address that holds the tokens that were created for a project. It can receive tokens from vesting contracts, and it can control AMM LP positions.
 
-In the first implementation, the project treasury is just a blockchain address. The maintainer can use an EOA address. This puts it under the control of a single user as a “benevolent dictator”. The maintainer can use the address of a multisig SAFE. This adds some collaborative governance and controls to the project.
+In the first implementation, the project treasury is a multisig SAFE with the founder and benevolent dictator as a single signer. We can upgrade the controls on this multisig address to addgovernance.
 
-In a future implementation, we will add an address that is controlled by Futarchy. Actions can be proposed for the treasury, and a Futarchy market will decide whether the action is executed.
+### Governance
+A newly launched token and trading pool will not have value, because the project treasury can dump dump tokens and take money from buyers. To add value, we need to control the distribution of tokens. We will do this by adding governance to the project treasury.
+
+We propose a set of features and a governance ranking system
+
+#### Governance Rank 0
+The project treasury is controlled by a single benevolent dictator.
+
+#### Rank 1
+The treasury has a cosigner from TIPL with a 2 of 2 signing requirement. This prevents dumping, and it is a minimal step to make the token tradable.
+
+#### Rank 2
+The treasury has a set of at least three qualified signers with at least 2 required for signing. This provides redundancy, recover, deliberation, and adds reputation points.
+
+#### Rank 3
+The token distribution is stabilized with automated lockup and vesting of tokens and LP positions. We will develop contracts which can do lockup, and also allow the recipients to participate in tender offers.
+
+#### Rank 4
+The treasury can sign with futarcy. We will provide a futarchy implementation.
+
+#### Rank 5
+Rank 5 is reserved for future best practices.
 
 ### Tender vault
 
