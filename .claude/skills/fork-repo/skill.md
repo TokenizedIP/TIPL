@@ -2,7 +2,7 @@
 name: fork-repo
 description: Fork a GitHub repo, apply TIPL license, and push changes
 disable-model-invocation: true
-allowed-tools: Bash(git *), Bash(gh *), Bash(npm run get-token-info), Bash(ls *), Bash(cd *), Read, Edit, Write, AskUserQuestion
+allowed-tools: Bash(git *), Bash(gh *), Bash(npm run get-token-info), Bash(ls *), Bash(cd *), Bash(curl *), Read, Edit, Write, AskUserQuestion
 ---
 
 # Fork Repo Skill
@@ -142,6 +142,46 @@ Note: If the default branch is not `main`, detect it first:
 git -C "C:\Users\andy\cc\<new-name>" symbolic-ref refs/remotes/origin/HEAD --short
 ```
 
+### Step 9.5: Submit to TIPL Dashboard
+
+Submit the project to the TIPL dashboard database.
+
+#### Gather Required Data
+
+Collect the required fields (already available from previous steps):
+- `token_address` - from Step 7 JSON output
+- `token_symbol` - from Step 7 JSON output
+- `token_name` - from Step 7 JSON output
+- `treasury_address` - read `PROJECT_TREASURY` from TIPL `.env`
+- `repo_url` - `https://github.com/<username>/<new-name>` from Steps 4-5
+
+Read optional fields from TIPL `.env`:
+- `uniswap_pool_address` - from `UNISWAP_POOL` (may be empty)
+
+#### Gather Optional User Input
+
+Use a single AskUserQuestion to collect all optional project info at once:
+
+- **notes**: Project description (up to 5 lines of markdown). Suggest a draft based on the repository's README if available.
+- **telegram**: Telegram group invite link (e.g., `https://t.me/+xxxxx`)
+- **twitter_account**: Twitter/X handle (if user pastes URL like `https://x.com/username`, extract just `username`)
+- **maintainer_email**: Contact email address
+
+All fields are optional - user can skip by leaving blank or selecting "Other" with empty input.
+
+#### Submit to API
+
+Build JSON payload with all collected data (omit empty optional fields).
+
+POST to the dashboard:
+```bash
+curl -X POST https://www.tipl.fun/api/projects \
+  -H "Content-Type: application/json" \
+  -d '<json-payload>'
+```
+
+If the POST fails, warn the user but continue to the summary step (non-fatal error).
+
 ### Step 10: Summary
 
 Provide the user with a summary including:
@@ -150,6 +190,7 @@ Provide the user with a summary including:
 - Token info: name, symbol, address
 - Confirm LICENSE.md was created
 - Confirm INITIALTERMS.md was created (if applicable)
+- Confirm project was submitted to TIPL dashboard (or show warning if submission failed)
 
 ## Error Handling
 

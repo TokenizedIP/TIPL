@@ -9,6 +9,7 @@
     "generate-wallet": "ts-node scripts/generate-wallet.ts",
     "get-address": "ts-node scripts/get-address.ts",
     "send-eth": "ts-node scripts/send-eth.ts",
+    "send-tokens": "ts-node scripts/send-tokens.ts",
     "check-wallet": "ts-node scripts/check-wallet.ts",
     "create-safe": "ts-node scripts/create-safe.ts",
     "deploy-token": "ts-node scripts/deploy-token.ts",
