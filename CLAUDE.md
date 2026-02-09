@@ -67,23 +67,18 @@ npm run generate-wallet    # Generate a new local wallet
 npm run get-address        # Get address from configured signer
 npm run send-eth           # Send ETH: npm run send-eth <to> <amount>
 
-# Token Creation
+# Token Creation (single-transaction setup)
 npm run check-wallet       # Verify wallet has ≥0.001 ETH
-npm run create-safe        # Deploy Safe.global 1-of-1 multisig treasury
-npm run deploy-token       # Deploy ERC20 and distribute tokens
-npm run create-uniswap-pool # Create Uniswap V4 pool (optional)
+npm run setup-tipl         # Deploy token + treasury + optional pool in one tx
 npm run view-treasury      # Display Safe.global app URL
 ```
 
 ## Token Creation Skill
 
-The `/create-token` skill automates ERC20 token creation on Base mainnet:
+The `/create-token` skill automates TIPL project setup on Base mainnet using the TIPLSetup contract. A single transaction handles everything:
 
 1. Verifies wallet balance (≥0.001 ETH required)
-2. Creates a Safe.global multisig treasury
-3. Deploys an ERC20 token (1M supply, 18 decimals)
-4. Distributes tokens: 5% to TIPL treasury, 95% to project treasury
-5. Optionally creates a Uniswap V4 trading pool
+2. Deploys ERC20 token, Safe multisig treasury, distributes tokens, and optionally creates Uniswap V4 pool — all in one `setupTIPL()` call
 
 Token distribution with pool:
 - 50K (5%) to TIPL treasury
@@ -97,7 +92,7 @@ Copy `.env.example` to `.env` and configure:
 - `RPC_URL`: Blockchain RPC endpoint (default: Base mainnet)
 - `PRIVATE_KEY`: For local signing (without 0x prefix)
 - `DERIVATION_PATH`: For Ledger (default: 44'/60'/0'/0/0)
-- `TIPL_TREASURY`: Address to receive 5% of all created tokens
+- `TIPL_COSIGNER`: Address for 2-of-2 multisig second signer
 
 ## Code Architecture
 
@@ -109,16 +104,15 @@ src/
     ├── local.ts      # LocalSigner - private key signing
     └── ledger.ts     # LedgerSigner - hardware wallet signing
   constants/
-    └── addresses.ts  # Base mainnet contract addresses
+    └── addresses.ts  # Base mainnet contract addresses (incl. TIPLSetup)
   contracts/
-    └── ERC20Token.ts # Pre-compiled ERC20 bytecode and ABI
+    ├── ERC20Token.ts # Pre-compiled ERC20 bytecode and ABI
+    └── TIPLSetup.ts  # TIPLSetup contract ABI and address
 
 scripts/              # CLI utilities
-  ├── check-wallet.ts       # Verify wallet balance
-  ├── create-safe.ts        # Deploy Safe multisig
-  ├── deploy-token.ts       # Deploy and distribute ERC20
-  ├── create-uniswap-pool.ts # Create Uniswap V4 pool
-  └── view-treasury.ts      # Show Safe.global URL
+  ├── check-wallet.ts # Verify wallet balance
+  ├── setup-tipl.ts   # Single-tx project setup (token + treasury + pool)
+  └── view-treasury.ts # Show Safe.global URL
 
 .claude/skills/create-token/  # Claude Code skill for token creation
 ```

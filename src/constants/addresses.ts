@@ -15,5 +15,8 @@ export const PERMIT2 = "0x000000000022D473030F116dDEE9F6B43aC78BA3";
 // Tokens
 export const USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
 
+// TIPLSetup contract
+export const TIPL_SETUP = "0x1573f48e1F1a870aE3655bF1A0c10d8cD9b74dc9";
+
 // Base chain ID
 export const BASE_CHAIN_ID = 8453;

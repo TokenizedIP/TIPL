@@ -11,10 +11,7 @@
     "send-eth": "ts-node scripts/send-eth.ts",
     "send-tokens": "ts-node scripts/send-tokens.ts",
     "check-wallet": "ts-node scripts/check-wallet.ts",
-    "create-safe": "ts-node scripts/create-safe.ts",
-    "deploy-token": "ts-node scripts/deploy-token.ts",
-    "create-uniswap-pool": "ts-node scripts/create-uniswap-pool.ts",
-    "mint-pool-position": "ts-node scripts/mint-pool-position.ts",
+    "setup-tipl": "ts-node scripts/setup-tipl.ts",
     "view-treasury": "ts-node scripts/view-treasury.ts",
     "get-token-info": "ts-node scripts/get-token-info.ts"
   },
@@ -32,7 +29,7 @@
   "dependencies": {
     "@ledgerhq/hw-app-eth": "^7.3.2",
     "@ledgerhq/hw-transport-node-hid": "^6.30.0",
-    "@safe-global/protocol-kit": "^6.1.2",
+
     "ethers": "^6.16.0"
   },
   "devDependencies": {
