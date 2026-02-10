@@ -1,6 +1,7 @@
 # Claude code
 .claude/settings.local.*
 
+nul
 
 # dotenv environment variable files
 .env

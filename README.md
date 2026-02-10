@@ -216,7 +216,7 @@ An acquirer can gain control of the IP after making a successful tender offer fo
 
 The acquirer cannot revoke open source rights. When terms in an open source license conflict with a new license, the open source wins.
 
-The template repository contains [a recent version of our TIPL](https://github.com/MaxosLLC/TIPLempty/blob/main/licenses/TIPL). To use it:
+The template repository contains [a recent version of our TIPL](https://github.com/TokenizedIP/TIPLempty/blob/main/licenses/TIPL). To use it:
 
 * Add the date and token details at the top. The license should be related to a specific token.  
 * Often, you will place this in a code repository as the file LICENSE  
@@ -226,7 +226,7 @@ The template repository contains [a recent version of our TIPL](https://github.c
 
 A Source Availability License is a way to work with contributors. It gives them the rights to use and modify the IP, as long as they do not use it commercially in "production".
 
-The template repository contains [a recent version of our SAL](https://github.com/MaxosLLC/TIPLempty/blob/main/licenses/SAL). To use it:
+The template repository contains [a recent version of our SAL](https://github.com/TokenizedIP/TIPLempty/blob/main/licenses/SAL). To use it:
 
 * edit the "Additional use grant" or leave it as "none".  
 * Place the SAL as INITIALTERMS.
