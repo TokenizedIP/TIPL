@@ -1,0 +1,166 @@
+THE TOKENIZED IP LICENSE (TIPL)
+
+Version: 0.2
+Date: [Insert Date]
+Governed by Token: [Insert blockchain] [Insert Token Ticker] [Insert contract address]
+
+-------------------------------------------------------------------------------
+
+1. DEFINITIONS
+
+  * "The IP" refers to the source code, object code, documentation, and related
+    assets contained within this repository or distribution.
+
+  * "The Token" refers to the specific cryptocurrency or governance token
+    identified by the Smart Contract Address defined in the header of this
+    license.
+
+  * "Maximum Token Supply" means the total number of Tokens that may ever be
+    minted pursuant to the Token's governing smart contract, whether issued or
+    unissued at the time of a Tender Offer.
+
+  * "Token Holder" means any entity or individual possessing The Token on the
+    associated blockchain.
+
+  * "Controlling Party" refers to the legal person, DAO, or entity that
+    currently holds the authority to determine the licensing terms of The IP
+    pursuant to this License. Initially, the Controlling Party is the copyright
+    holder.
+
+  * "Initial Terms" refers to the document (e.g., INITIALTERMS.md,
+    LICENSE_TERMS.txt) included in this distribution that specifies the current
+    usage rights, restrictions, and permissions for The IP.
+
+  * "Purchaser" means any entity or individual who initiates a Tender Offer to
+    acquire The Tokens.
+
+  * "Tender Offer" means a public, verifiable offer to purchase The Tokens from
+    any and all Token Holders at a fixed price per Token.
+
+  * "Change of Control Event" occurs when a single Purchaser acquires ownership
+    of at least fifty percent (50%) of the Maximum Token Supply through a Tender
+    Offer.
+
+-------------------------------------------------------------------------------
+
+2. GRANT OF RIGHTS (INITIAL TERMS)
+
+This License acts as a governance wrapper over the specific usage rights
+granted for The IP.
+
+  2.1 Initial Terms
+
+  Your rights to use, copy, modify, merge, publish, distribute, sublicense,
+  and/or sell copies of The IP are governed by the Initial Terms. The Initial
+  Terms may define different permissions for different files, directories, or
+  modules within The IP (for example, permissive open-source licenses for some
+  components and restricted or commercial terms for others).
+
+  The default Initial Terms for this repository are described in the file
+  INITIALTERMS.md.
+
+  2.2 Conflict of Terms
+
+  In the event of a conflict between the Initial Terms and this TIPL regarding
+  usage of The IP, the Initial Terms shall control to the extent required to
+  preserve irrevocable rights granted under those Initial Terms, including
+  rights granted under open-source licenses.
+
+  In the event of a conflict regarding ownership, governance, or the Tender
+  Offer mechanism, this TIPL shall control.
+
+-------------------------------------------------------------------------------
+
+3. THE TENDER OFFER MECHANISM (BUYOUT CLAUSE)
+
+The authority of the current Controlling Party and the applicability of the
+Initial Terms are subject to a buyout mechanism governed by the following
+terms.
+
+  3.1 Initiation of Tender Offer
+
+  Any party (the "Purchaser") may seek to become the Controlling Party by
+  initiating a Tender Offer. The Tender Offer must:
+
+  1. Be open to ALL current Token Holders.
+  2. Specify a fixed Offer Price per Token.
+  3. Include a legally binding commitment or smart-contract escrow to purchase
+     ALL Tokens tendered by Token Holders at the Offer Price.
+
+  3.2 Change of Control
+
+  If, at the conclusion of the Tender Offer, the Purchaser has acquired
+  ownership of at least fifty percent (50%) of the Maximum Token Supply, a
+  Change of Control Event is deemed to have occurred.
+
+  3.3 Effect of Change of Control
+
+  Upon verification of a Change of Control Event:
+
+  1. Transfer of Control: The Purchaser immediately becomes the Controlling
+     Party.
+  2. Right to Modify Terms: The Controlling Party gains the right to cancel,
+     replace, or modify the Initial Terms with respect to all versions of The
+     IP, past and future, except to the extent that such modification is
+     prohibited by irrevocable open-source licenses or applicable law.
+
+-------------------------------------------------------------------------------
+
+4. CONTINUITY OF OPEN SOURCE RIGHTS
+
+  4.1 Irrevocable Open Source Licenses
+
+  If the Initial Terms granted a perpetual, irrevocable open-source license
+  (including but not limited to licenses approved by the Open Source
+  Initiative) for any portion or version of The IP, such rights CANNOT BE
+  REVOKED for that portion or version.
+
+  In the event of a conflict between an open-source license and any modified
+  license issued by a Controlling Party, the open-source license shall
+  prevail.
+
+  4.2 No Other Protected Expectations
+
+  Except as provided in Section 4.1, no user or licensee is granted any
+  expectation that the Initial Terms will remain unchanged following a Change
+  of Control Event.
+
+-------------------------------------------------------------------------------
+
+5. CONTRIBUTIONS
+
+  5.1 Acceptance of TIPL Governance
+
+  By submitting any contribution to The IP, including code, documentation,
+  data, or other materials ("Contribution"), you agree that your Contribution
+  is governed by this Tokenized IP License (TIPL) and the Initial Terms in
+  effect at the time of contribution.
+
+  5.2 Grant of Authority
+
+  You irrevocably authorize the Controlling Party, as determined pursuant to
+  this TIPL, to grant, modify, replace, or terminate license terms applicable
+  to your Contribution, including as a result of a Change of Control Event,
+  subject only to the limitations imposed by irrevocable open-source licenses
+  and applicable law.
+
+  5.3 No Expectation of Stability
+
+  You acknowledge that, except for rights granted under irrevocable
+  open-source licenses, license terms applicable to The IP may change over
+  time, including retroactively, following a Change of Control Event.
+
+  5.4 Representation
+
+  You represent that you have the legal right to make the Contribution and to
+  grant the authorizations described in this Section.
+
+-------------------------------------------------------------------------------
+
+6. DISCLAIMER OF WARRANTY
+
+THE IP IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+-------------------------------------------------------------------------------
