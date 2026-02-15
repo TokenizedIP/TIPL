@@ -7,7 +7,7 @@ allowed-tools: Bash(npm run *), Read, Edit, AskUserQuestion
 
 # Create Token Skill
 
-This skill automates TIPL project setup on Base mainnet using the TIPLSetup contract. A single transaction deploys the ERC20 token, creates a Safe multisig treasury, distributes tokens, and optionally creates a Uniswap V4 pool.
+This skill automates TIPL project setup on Base mainnet using the TIPLSetupFlex contract. A single transaction deploys the ERC20 token, creates a Safe multisig treasury, distributes tokens, and optionally creates a Uniswap V4 pool with a starting price of $0.10.
 
 ## Prerequisites
 
@@ -113,4 +113,4 @@ After completing all steps, provide the user with a summary including:
   - Insufficient ETH balance
   - Network connectivity issues
   - Ledger not connected (for hardware wallet users)
-  - TIPLSetup contract call reverted (check gas, parameters)
+  - TIPLSetupFlex contract call reverted (check gas, parameters)

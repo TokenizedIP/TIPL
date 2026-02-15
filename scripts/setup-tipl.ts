@@ -1,7 +1,7 @@
 /**
  * Single-transaction TIPL project setup
  *
- * Calls the TIPLSetup contract to deploy token, create multisig treasury,
+ * Calls the TIPLSetupFlex contract to deploy token, create multisig treasury,
  * distribute tokens, and optionally create a Uniswap pool — all in one transaction.
  *
  * Arguments: --name "Token Name" --symbol TKN [--pool]
@@ -80,12 +80,16 @@ async function main() {
 
     // Encode the setupTIPL call
     const iface = new ethers.Interface(TIPL_SETUP_ABI);
+    // Starting price for the Uniswap LP position in USDC units ($0.10 = 100000)
+    const startingPrice = 100000n;
+
     const data = iface.encodeFunctionData('setupTIPL', [
       symbol,
       name,
       ethers.ZeroAddress, // firstSigner = address(0) → contract defaults to msg.sender
       cosigner,
       pool,
+      startingPrice,
     ]);
 
     console.log('\nSending setup transaction...');

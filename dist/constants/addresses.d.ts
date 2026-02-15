@@ -8,5 +8,5 @@ export declare const POSITION_MANAGER = "0x7c5f5a4bbd8fd63184577525326123b519429
 export declare const STATE_VIEW = "0xa3c0c9b65bad0b08107aa264b0f3db444b867a71";
 export declare const PERMIT2 = "0x000000000022D473030F116dDEE9F6B43aC78BA3";
 export declare const USDC = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913";
-export declare const TIPL_SETUP = "0x1573f48e1F1a870aE3655bF1A0c10d8cD9b74dc9";
+export declare const TIPL_SETUP = "0x8B91ba8d20B92Eb65031d351511370140FAD4a0f";
 export declare const BASE_CHAIN_ID = 8453;
