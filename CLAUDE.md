@@ -3,61 +3,21 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
+This repository holds skills and scripts for AI agents that use TIPL tools.
 
+
+## TIPL reference
 TIPL (Tokenized IP License) is a framework for community-sourced software development by Andy Singleton. It combines:
 
 - **Token-based IP governance**: Intellectual property tied to cryptocurrency tokens; acquiring >50% via tender offer grants control to modify licensing terms
-- **Code mining automation**: Automated evaluation, consolidation, and merging of AI and human contributions
+- **Development automation**: Automated evaluation, consolidation, and merging of AI and human contributions
 - **Decentralized incentives**: Contributors (human and AI agents) receive project tokens as rewards
 
-Repository: https://github.com/MaxosLLC/TIPL
+- `licenses/TIPL.md` - TIPL license template (v0.1) defining the tender offer mechanism and change-of-control rules
+- TIPL_concepts/* - Full product requirements including system components and implementation plan
+- The TIPL.fun launchpad documentation at https://tipl.fun/docs
+- Smart contracts for creating TIPL tokens, treasuries, and liquidity pools are in the repository at https://github.com/TokenizedIP/TIPLsetup
 
-## Current State
-
-This project is in the conceptual/documentation phase. Key documents:
-
-- `README.md` - Project overview
-- `Gemini TIPL 01.md` - TIPL license template (v0.1) defining the tender offer mechanism and change-of-control rules
-- `TIPL_concepts/TIPL Top Level PRD.md` - Full product requirements including system components and implementation plan
-
-## Planned Technology Stack
-
-- **AI Tool**: Claude Code (for maintainers and contributors)
-- **Version Control**: GitHub
-- **Blockchain**: EVM chains (Base primary), Solana future
-- **Web Apps**: Next.JS for Vercel deployment
-- **Smart Contracts**: ERC-20 tokens, Uniswap integration, vesting, tender vault
-
-## Architecture (Planned Components)
-
-### Tokens
-- ERC-20 tokens on Base blockchain
-- Non-mintable, non-pausable
-- Future: Uniswap trading pools, lockup/vesting controls
-
-### Setup Process
-- Setup local signing of blockchain transactiions
-- Creates token, GitHub repo, Uniswap pool (optional)
-- Sends tokens to a treasury address
-- Adds project to the TIPL directory'
-
-### Directory app
-- Keeps a list of TIPL sourced projects
-- Provides a Web application to view and search the list of projects
-- Includes the Web version of the Setup feature
-
-### Code Mining Tools
-- **Requests**: Ticketing system for requirements/prompts
-- **Contribution**: Automate AI/human submissions
-- **Consolidation**: Combine similar contributions into quality releases
-- **Review & Merge**: Automated review with human maintainer final decisions
-- **Reward**: Token distribution to contributors
-
-## User Roles
-
-1. **Founder**: Andy Singleton (TIPL project lead)
-2. **Maintainers**: Create projects, manage tokens, guide development
-3. **Contributors**: Humans or AI agents providing code/skills/IP for token rewards
 
 ## Development Commands
 
