@@ -13,7 +13,9 @@
     "check-wallet": "ts-node scripts/check-wallet.ts",
     "setup-tipl": "ts-node scripts/setup-tipl.ts",
     "view-treasury": "ts-node scripts/view-treasury.ts",
-    "get-token-info": "ts-node scripts/get-token-info.ts"
+    "get-token-info": "ts-node scripts/get-token-info.ts",
+    "claim-coins": "ts-node scripts/claim-coins.ts",
+    "claim-fees": "ts-node scripts/claim-fees.ts"
   },
   "repository": {
     "type": "git",
@@ -29,12 +31,19 @@
   "dependencies": {
     "@ledgerhq/hw-app-eth": "^7.3.2",
     "@ledgerhq/hw-transport-node-hid": "^6.30.0",
-
+    "@safe-global/api-kit": "^4.0.1",
+    "@safe-global/protocol-kit": "^6.1.2",
     "ethers": "^6.16.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "node-hid": "^3.3.0"
+    }
   },
   "devDependencies": {
     "@types/node": "^25.1.0",
     "dotenv": "^17.2.3",
+    "node-hid": "^3.3.0",
     "solc": "^0.8.24",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"

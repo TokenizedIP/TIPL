@@ -29,5 +29,6 @@ export interface BaseSigner {
   getAddress(): Promise<string>;
   signTransaction(tx: TransactionRequest): Promise<SignedTransaction>;
   sendTransaction(tx: TransactionRequest): Promise<ethers.TransactionResponse>;
+  signMessage(message: Uint8Array): Promise<string>;
   getProvider(): ethers.JsonRpcProvider;
 }

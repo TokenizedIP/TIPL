@@ -118,6 +118,17 @@ export class LedgerSigner implements BaseSigner {
     };
   }
 
+  async signMessage(message: Uint8Array): Promise<string> {
+    const eth = await this.connect();
+    const hex = Buffer.from(message).toString('hex');
+    console.log('Please sign the message on your Ledger device...');
+    const sig = await eth.signPersonalMessage(this.derivationPath, hex);
+    // Reconstruct the signature with EIP-155 v value
+    const v = parseInt(sig.v.toString(), 10);
+    const recoveryV = v >= 27 ? v : v + 27;
+    return '0x' + sig.r + sig.s + recoveryV.toString(16).padStart(2, '0');
+  }
+
   async sendTransaction(tx: TransactionRequest): Promise<ethers.TransactionResponse> {
     const { rawTransaction } = await this.signTransaction(tx);
     return this.provider.broadcastTransaction(rawTransaction);

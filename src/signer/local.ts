@@ -51,6 +51,10 @@ export class LocalSigner implements BaseSigner {
     return response;
   }
 
+  async signMessage(message: Uint8Array): Promise<string> {
+    return this.wallet.signMessage(message);
+  }
+
   getProvider(): ethers.JsonRpcProvider {
     return this.provider;
   }
